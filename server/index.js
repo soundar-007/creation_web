@@ -11,7 +11,10 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: [
+    "http://localhost:3000",
+    "https://creation-9amelhr9x-soundars-projects-74e26c24.vercel.app",
+  ],
   methods: "GET,POST",
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
