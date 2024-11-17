@@ -20,11 +20,11 @@ export const logoutUser = createAsyncThunk(
   "user/logoutUser",
   async (_, { dispatch }) => {
     try {
-      await axios.post(
-        "https://creation-web.onrender.com/api/auth/logout",
-        {},
-        { withCredentials: true }
-      );
+      // await axios.post(
+      //   "https://creation-web.onrender.com/api/auth/logout",
+      //   {},
+      //   { withCredentials: true }
+      // );
       dispatch(logout());
     } catch (error) {
       console.error("Logout failed:", error);

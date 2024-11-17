@@ -55,7 +55,9 @@ export default function Page() {
         setError(errorData.message || "Something went wrong");
         toast.error(errorData.message);
       } else {
+        const data = await res.json();
         router.push("/dashboard");
+        localStorage.setItem("token", data.token);
         toast.success("Successfully Logged In !!");
       }
     } catch (err) {

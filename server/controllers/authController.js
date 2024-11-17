@@ -51,7 +51,7 @@ exports.signin = async (req, res) => {
       sameSite: "None",
       maxAge: 60 * 60 * 1000,
     });
-    res.status(200).json({ message: "Login successful", success: true });
+    res.status(200).json({ message: "Login successful", success: true, token });
   } catch (error) {
     res
       .status(500)

@@ -43,8 +43,9 @@ function NavBar() {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const response = await axios.get(
+        const response = await axios.post(
           "https://creation-web.onrender.com/api/user/getUserDetails",
+          { token: localStorage.getItem("token") },
           { withCredentials: true }
         );
         dispatch(setUser(response.data.data));

@@ -26,14 +26,12 @@ exports.uploadAvatar = async (req, res) => {
       { avatarUrl: secure_url },
       { new: true }
     );
-    return res
-      .status(200)
-      .json({
-        success: true,
-        data: user,
-        error: false,
-        message: "Profile Picture Uploaded Successfully",
-      });
+    return res.status(200).json({
+      success: true,
+      data: user,
+      error: false,
+      message: "Profile Picture Uploaded Successfully",
+    });
   } catch (error) {
     return res
       .status(401)

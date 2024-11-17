@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 exports.authenticate = (req, res, next) => {
-  const token = req.cookies?.session_x_autxz || req.cookies?._vercel_jwt || "";
+  const token = req.body.token;
   if (!token) {
     return res
       .status(401)

@@ -64,6 +64,7 @@ function Profile() {
         "https://creation-web.onrender.com/api/user/uploadAvatar",
         {
           data: data.secure_url,
+          token: localStorage.getItem("token"),
         },
         { withCredentials: true }
       );
