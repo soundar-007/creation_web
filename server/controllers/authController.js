@@ -47,8 +47,8 @@ exports.signin = async (req, res) => {
     res.cookie("session_x_autxz", token, {
       path: "/",
       httpOnly: true,
-      secure: false,
-      sameSite: "Strict",
+      secure: true,
+      sameSite: "None",
       maxAge: 60 * 60 * 1000,
     });
     res.status(200).json({ message: "Login successful", success: true });
