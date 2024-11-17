@@ -14,6 +14,7 @@ const corsOptions = {
   origin: [
     "http://localhost:3000",
     "https://creation-be66u7upy-soundars-projects-74e26c24.vercel.app",
+    "https://creation-web.vercel.app",
   ],
   methods: "GET,POST",
   allowedHeaders: ["Content-Type", "Authorization"],
