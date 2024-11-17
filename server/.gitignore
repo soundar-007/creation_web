@@ -1,0 +1,33 @@
+
+
+# Dependency directories
+node_modules/
+
+# Environment variables
+.env
+.env.*.local
+
+# Miscellaneous
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Editor directories and files
+.idea/
+.vscode/
+*.code-workspace
+
+# OS files
+*.DS_Store
+
+
+# Logs and temporary files
+logs/
+*.log
+*.gz
+.tmp
+
+# Local build files
+dist/
+build/
