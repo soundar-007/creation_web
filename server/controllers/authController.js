@@ -48,7 +48,7 @@ exports.signin = async (req, res) => {
       path: "/",
       httpOnly: true,
       secure: true,
-      sameSite: "None",
+      sameSite: "Lax",
       maxAge: 60 * 60 * 1000,
     });
     res.status(200).json({ message: "Login successful", success: true });
