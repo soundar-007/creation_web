@@ -21,7 +21,7 @@ export const logoutUser = createAsyncThunk(
   async (_, { dispatch }) => {
     try {
       await axios.post(
-        "http://localhost:3001/api/auth/logout",
+        "https://creation-web.onrender.com/api/auth/logout",
         {},
         { withCredentials: true }
       );

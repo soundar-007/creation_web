@@ -44,7 +44,7 @@ function NavBar() {
     const fetchUserDetails = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3001/api/user/getUserDetails",
+          "https://creation-web.onrender.com/api/user/getUserDetails",
           { withCredentials: true }
         );
         dispatch(setUser(response.data.data));

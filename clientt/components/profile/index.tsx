@@ -61,7 +61,7 @@ function Profile() {
       dispatch(setProfile({ avatarUrl: data.secure_url }));
 
       const result = await axios.post(
-        "http://localhost:3001/api/user/uploadAvatar",
+        "https://creation-web.onrender.com/api/user/uploadAvatar",
         {
           data: data.secure_url,
         },
