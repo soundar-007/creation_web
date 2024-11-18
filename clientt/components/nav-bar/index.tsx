@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "@/lib/features/userSlice";
 import axios from "axios";
 import { RootState } from "@/lib/store";
+import API from "@/lib/api";
 
 function NavBar() {
   // const {logout} = useAuth();
@@ -43,10 +44,8 @@ function NavBar() {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const response = await axios.post(
-          "https://creation-web.onrender.com/api/user/getUserDetails",
-          { token: localStorage.getItem("token") },
-          { withCredentials: true }
+        const response = await API.post(
+          "/api/user/getUserDetails",
         );
         dispatch(setUser(response.data.data));
       } catch (error) {

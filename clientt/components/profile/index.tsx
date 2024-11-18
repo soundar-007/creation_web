@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import Loading from "../loading";
 import { User2Icon, Trash2Icon } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
-import axios from "axios";
 import toast from "react-hot-toast";
 import { setProfile } from "@/lib/features/userSlice";
+import API from "@/lib/api";
 
 function Profile() {
   const userData = useSelector((state: RootState) => state.user);
@@ -60,14 +60,9 @@ function Profile() {
       setAvatarPreview(null);
       dispatch(setProfile({ avatarUrl: data.secure_url }));
 
-      const result = await axios.post(
-        "https://creation-web.onrender.com/api/user/uploadAvatar",
-        {
-          data: data.secure_url,
-          token: localStorage.getItem("token"),
-        },
-        { withCredentials: true }
-      );
+      const result = await API.post("/api/user/uploadAvatar", {
+        data: data.secure_url,
+      });
 
       if (result.data.success) {
         toast.success("Avatar uploaded successfully");

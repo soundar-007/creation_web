@@ -44,13 +44,15 @@ exports.signin = async (req, res) => {
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
-    res.cookie("session_x_autxz", token, {
+    const cookieOptions = {
       path: "/",
       httpOnly: true,
-      secure: true,
-      sameSite: "None",
-      maxAge: 60 * 60 * 1000,
-    });
+      secure: process.env.NODE_ENV === "production",
+      maxAge: 60 * 60 * 1000, 
+      sameStrict:'None'
+    };
+
+    res.cookie("session_x_autxz", token, cookieOptions);
     res.status(200).json({ message: "Login successful", success: true, token });
   } catch (error) {
     res
@@ -78,8 +80,8 @@ exports.checkAuth = async (req, res) => {
 exports.logout = (req, res) => {
   res.cookie("session_x_autxz", "", {
     httpOnly: true,
-    secure: false,
-    sameSite: "Strict",
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "None",
     expires: new Date(0),
     path: "/",
   });

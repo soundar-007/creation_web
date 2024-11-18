@@ -4,11 +4,10 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import { Button } from "@/components/ui/button";
-import Cookies from "@/node_modules/@types/js-cookie";
-import { useAuth } from "@/app/contexts/AuthContext";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
+import API from "@/lib/api";
 
 export default function Page() {
   const [error, setError] = useState<string | null>(null);
@@ -40,24 +39,17 @@ export default function Page() {
       return;
     }
     try {
-      const res = await fetch(
-        "https://creation-web.onrender.com/api/auth/signin",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, password }),
-          credentials: "include",
-        }
-      );
+      const res = await API.post("/api/auth/signin", {
+        email,
+        password,
+      });
 
-      if (!res.ok) {
-        const errorData = await res.json();
+      if (!res.data.success) {
+        const errorData = await res.data
         setError(errorData.message || "Something went wrong");
         toast.error(errorData.message);
       } else {
-        const data = await res.json();
         router.push("/dashboard");
-        localStorage.setItem("token", data.token);
         toast.success("Successfully Logged In !!");
       }
     } catch (err) {

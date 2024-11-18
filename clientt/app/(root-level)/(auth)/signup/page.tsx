@@ -7,6 +7,7 @@ import { toast } from "react-hot-toast";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
+import API from "@/lib/api";
 
 export default function Page() {
   const [error, setError] = useState<string | null>(null);
@@ -31,17 +32,14 @@ export default function Page() {
       return;
     }
     try {
-      const res = await fetch(
-        "https://creation-web.onrender.com/api/auth/signup",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, username, password }),
-        }
-      );
+      const res = await API.post("/api/auth/signup", {
+        email,
+        username,
+        password,
+      });
 
-      if (!res.ok) {
-        const errorData = await res.json();
+      if (!res.data.ok) {
+        const errorData = await res.data.json();
         setError(errorData.message || "Something went wrong");
         toast.error(error);
       } else {
