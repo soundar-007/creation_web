@@ -49,7 +49,7 @@ exports.signin = async (req, res) => {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       maxAge: 60 * 60 * 1000, 
-      sameStrict:'None'
+      sameSite:'None'
     };
 
     res.cookie("session_x_autxz", token, cookieOptions);
