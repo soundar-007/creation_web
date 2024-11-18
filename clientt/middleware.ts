@@ -1,17 +1,17 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { jwtVerify } from "jose";
+import { cookies } from "next/headers";
 
 export async function middleware(req: NextRequest) {
-  const token = req.cookies.get("session_x_autxz")?.value;
+  const token = (await cookies()).get("session_x_autxz"); 
   const isLoggingOut = req.nextUrl.searchParams.get("loggingOut") === "true";
-  console.log(token)
   if (token && !isLoggingOut) {
     try {
       const secret = new TextEncoder().encode(
         process.env.NEXT_PUBLIC_JWT_SECRET
       );
-      await jwtVerify(token, secret);
+      await jwtVerify(token.value, secret);
 
   if (
     req.nextUrl.pathname === "/signin" ||
