@@ -50,7 +50,6 @@ exports.signin = async (req, res) => {
       secure: process.env.NODE_ENV === "production",
       maxAge: 60 * 60 * 1000, 
       sameSite:'None',
-      domain: ".vercel.app"
     };
 
     res.cookie("session_x_autxz", token, cookieOptions);

@@ -8,6 +8,13 @@ const cookieParser = require("cookie-parser");
 
 const app = express();
 
+// app.use(function (req, res, next) {
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   res.setHeader('Access-Control-Allow-Headers', 'Orgin, X-Requested-With, Content-Type, Accept');
+//   res.setHeader('Access-Control-Allow-Methods', ['GET', 'POST']);
+//   res.setHeader("Access-Control-Allow-Credentials", "true");
+//   next();
+// })
 app.use(cookieParser());
 app.use(express.json());
 const corsOptions = {
@@ -20,6 +27,7 @@ const corsOptions = {
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
 };
+
 app.use(cors(corsOptions));
 
 
