@@ -4,7 +4,7 @@ import { jwtVerify } from "jose";
 import { cookies } from "next/headers";
 
 export async function middleware(req: NextRequest) {
-  const token = req.cookies.get('session_x_autxz')?.value
+  const token = req.cookies.get('session_x_autxz')?.value || req.cookies.get('_vercel_jwt')?.value
   const isLoggingOut = req.nextUrl.searchParams.get("loggingOut") === "true";
   if (token && !isLoggingOut) {
     try {
